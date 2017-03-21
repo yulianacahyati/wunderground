@@ -1,0 +1,30 @@
+<?php
+  $json_string = file_get_contents("http://api.wunderground.com/api/1d171ef362048b79/astronomy/q/Australia/Sydney.json");
+  $parsed_json = json_decode($json_string);
+  $moon_phase = $parsed_json->{'moon_phase'}->{'percentIlluminated'};
+  $age=$parsed_json->{'moon_phase'}->{'ageOfMoon'};
+  $phase=$parsed_json->{'moon_phase'}->{'phaseofMoon'};
+  $hemi=$parsed_json->{'moon_phase'}->{'hemisphere'};
+  $current_time=$parsed_json->{'moon_phase'}->{'current_time'}->{'hour'};
+  $current_time1=$parsed_json->{'moon_phase'}->{'current_time'}->{'minute'};
+  $sun_phase=$parsed_json->{'sun_phase'}->{'sunrise'}->{'hour'};
+  $sun_phase1=$parsed_json->{'sun_phase'}->{'sunrise'}->{'minute'};
+  $sunset=$parsed_json->{'sun_phase'}->{'sunset'}->{'hour'};
+  $sunset1=$parsed_json->{'sun_phase'}->{'sunset'}->{'minute'};
+  echo "ASTRONOMY <br>";
+  echo "//-----------------// <br>";
+  echo "<b>Moon Phase</b><br>";
+  echo "----------------<br>";
+  echo "percentIlluminated : ${moon_phase} <br/>";
+  echo "ageOfMoon : ${age}<br/>";
+  echo "phaseofMoon : ${phase} <br/>";
+  echo "hemisphere : ${hemi} <br/>";
+  echo "Current time : ";
+  echo "Hour ${current_time} , Minute ${current_time1}<br><br>";
+  echo "<b>Sun Phase</b><br>";
+  echo "----------------<br>";
+  echo "Sunrise : ";
+  echo "Hour ${sun_phase} , Minute ${sun_phase1}<br/>";
+  echo "Sunset : ";
+  echo "Hour ${sunset} , Minute ${sunset1}<br/>";
+?>
